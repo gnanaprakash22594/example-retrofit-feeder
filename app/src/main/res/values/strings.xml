@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Feeder</string>
+    <string name="title_activity_feed_list">FeedListActivity</string>
+</resources>
