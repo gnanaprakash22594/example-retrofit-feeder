@@ -26,9 +26,15 @@ public class FeedDetail extends AppCompatActivity {
         // get data from calling activity
         Bundle args = getIntent().getExtras();
         Integer postId = args.getInt("id");
+        String slug = args.getString("slug");
 
         PostsService service = RestClient.getInstance().create(PostsService.class);
-        service.getById(postId).enqueue(new Callback<FeedPosts.Post>() {
+
+        // prepare request call
+        Call<FeedPosts.Post> call = !TextUtils.isEmpty(slug) ? service.getBySlug(slug) : service.getById(postId);
+
+        // send the request
+        call.enqueue(new Callback<FeedPosts.Post>() {
             @Override
             public void onResponse(Call<FeedPosts.Post> call, Response<FeedPosts.Post> response) {
                 updateView(response.body());

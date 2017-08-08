@@ -17,4 +17,7 @@ public interface PostsService {
 
     @GET("/rest/v1.1/sites/techcrunch.com/posts/{postId}")
     Call<FeedPosts.Post> getById(@Path("postId") Integer id);
+
+    @GET("/rest/v1.1/sites/techcrunch.com/posts/slug:{slug}")
+    Call<FeedPosts.Post> getBySlug(@Path("slug") String slug);
 }
